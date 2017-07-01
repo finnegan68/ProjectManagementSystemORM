@@ -8,6 +8,10 @@
         <description>My Persistence Unit</description>
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>essence.Developer</class>
+        <class>essence.Company</class>
+        <class>essence.Skill</class>
+        <class>essence.Customer</class>
+        <class>essence.Project</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpaexample"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
@@ -15,6 +19,7 @@
             <property name="javax.persistence.jdbc.password" value="1111"/>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
         </properties>
+
     </persistence-unit>
 
 </persistence>

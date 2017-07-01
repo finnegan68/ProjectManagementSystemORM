@@ -1,22 +1,25 @@
 package essence;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table
 public class Developer{
     @Id
+    @Column
     @GeneratedValue
     private long id;
+    @Column
     String name;
+    @Column
     int age;
+    @Column
     long companyId;
+    @Column
     double salary;
-    @ManyToMany
+    @ManyToMany(targetEntity = Skill.class)
     private List<Skill> skills;
 
 

@@ -1,5 +1,6 @@
 package essence;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,10 +8,14 @@ import javax.persistence.Id;
 @Entity
 public class Project {
     @Id
+    @Column
     @GeneratedValue
     long projectId;
+    @Column
     long companyId;
+    @Column
     String name;
+    @Column
     double cost;
 
     public long getProjectId() {

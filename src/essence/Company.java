@@ -7,10 +7,12 @@ import java.util.List;
 @Entity
 public class Company {
     @Id
+    @Column
     @GeneratedValue
     long companyId;
+    @Column
     String companyName;
-    @OneToMany
+    @OneToMany(targetEntity = Developer.class)
     List<Developer> developers = new ArrayList<>();
 
     public long getCompanyId() {
