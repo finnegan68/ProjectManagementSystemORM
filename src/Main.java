@@ -21,6 +21,7 @@ public class Main {
         d.setSalary(5000);
 
         daoDev.create(d);
+        System.out.println("Hello");
 
         em.getTransaction().commit();
     }
