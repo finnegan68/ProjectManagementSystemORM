@@ -1,10 +1,11 @@
 package impl;
 
+import dao.CompanyDAO;
 import essence.Company;
 
 import javax.persistence.EntityManager;
 
-public class CompanyImpl implements DAO<Company> {
+public class CompanyImpl implements CompanyDAO {
     EntityManager entityManager;
 
     public CompanyImpl(EntityManager entityManager) {
@@ -12,8 +13,8 @@ public class CompanyImpl implements DAO<Company> {
     }
 
     @Override
-    public void create(Company obj) {
-        entityManager.persist(obj);
+    public void create(Company company) {
+        entityManager.persist(company);
     }
 
     @Override
@@ -22,15 +23,15 @@ public class CompanyImpl implements DAO<Company> {
     }
 
     @Override
-    public Company update(long id, Company obj) {
-        Company company = read(id);
-        company.setCompanyName(obj.getCompanyName());
-        company.setDevelopers(obj.getDevelopers());
-        return company;
+    public Company update(long id, Company company) {
+        Company newCompany = read(id);
+        newCompany.setCompanyName(company.getCompanyName());
+        newCompany.setDevelopers(company.getDevelopers());
+        return newCompany;
     }
 
     @Override
     public void delete(long id) {
-
+        entityManager.remove(entityManager.find(Company.class, id));
     }
 }

@@ -13,8 +13,8 @@ public class DeveloperImpl implements DAO<Developer>{
     }
 
     @Override
-    public void create(Developer obj) {
-        entityManager.persist(obj);
+    public void create(Developer developer) {
+        entityManager.persist(developer);
     }
 
     @Override
@@ -23,14 +23,14 @@ public class DeveloperImpl implements DAO<Developer>{
     }
 
     @Override
-    public Developer update(long id, Developer obj) {
-        Developer dev = entityManager.find(Developer.class, id);
-        dev.setName(obj.getName());
-        dev.setAge(obj.getAge());
-        dev.setCompanyId(obj.getCompanyId());
-        dev.setSalary(obj.getSalary());
-        dev.setSkills(obj.getSkills());
-        return dev;
+    public Developer update(long id, Developer developer) {
+        Developer newDeveloper = entityManager.find(Developer.class, id);
+        newDeveloper.setName(developer.getName());
+        newDeveloper.setAge(developer.getAge());
+        newDeveloper.setCompanyId(developer.getCompanyId());
+        newDeveloper.setSalary(developer.getSalary());
+        newDeveloper.setSkills(developer.getSkills());
+        return newDeveloper;
     }
 
     @Override

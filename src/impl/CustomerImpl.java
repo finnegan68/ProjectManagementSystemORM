@@ -1,11 +1,12 @@
 package impl;
 
 
+import dao.CustomerDAO;
 import essence.Customer;
 
 import javax.persistence.EntityManager;
 
-public class CustomerImpl implements DAO<Customer>{
+public class CustomerImpl implements CustomerDAO{
     EntityManager entityManager;
 
     public CustomerImpl(EntityManager entityManager) {
@@ -13,8 +14,8 @@ public class CustomerImpl implements DAO<Customer>{
     }
 
     @Override
-    public void create(Customer obj) {
-        entityManager.persist(obj);
+    public void create(Customer customer) {
+        entityManager.persist(customer);
     }
 
     @Override
@@ -23,15 +24,15 @@ public class CustomerImpl implements DAO<Customer>{
     }
 
     @Override
-    public Customer update(long id, Customer obj) {
-        Customer customer = read(id);
-        customer.setCustomerName(obj.getCustomerName());
-        customer.setProjectId(obj.getProjectId());
-        return customer;
+    public Customer update(long id, Customer customer) {
+        Customer newCustomer = read(id);
+        newCustomer.setCustomerName(customer.getCustomerName());
+        newCustomer.setProjectId(customer.getProjectId());
+        return newCustomer;
     }
 
     @Override
     public void delete(long id) {
-        entityManager.remove(id);
+        entityManager.remove(entityManager.find(Customer.class, id));
     }
 }

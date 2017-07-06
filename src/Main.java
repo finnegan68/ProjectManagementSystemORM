@@ -1,5 +1,5 @@
+import dao.DeveloperDAO;
 import essence.Developer;
-import impl.DAO;
 import impl.DeveloperImpl;
 
 import javax.persistence.EntityManager;
@@ -12,7 +12,7 @@ public class Main {
         EntityManager em = factory.createEntityManager();
 
         em.getTransaction().begin();
-        DAO daoDev = new DeveloperImpl(em);
+        DeveloperDAO daoDev = (DeveloperDAO) new DeveloperImpl(em);
 
         Developer d = new Developer();
         d.setName("Ololosh");

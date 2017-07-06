@@ -2,11 +2,12 @@ package impl;
 
 
 
+import dao.SkillDAO;
 import essence.Skill;
 
 import javax.persistence.EntityManager;
 
-public class SkillImpl implements DAO<Skill> {
+public class SkillImpl implements SkillDAO {
     EntityManager entityManager;
 
     public SkillImpl(EntityManager entityManager) {
@@ -14,8 +15,8 @@ public class SkillImpl implements DAO<Skill> {
     }
 
     @Override
-    public void create(Skill obj) {
-        entityManager.persist(obj);
+    public void create(Skill skill) {
+        entityManager.persist(skill);
     }
 
     @Override
@@ -24,11 +25,11 @@ public class SkillImpl implements DAO<Skill> {
     }
 
     @Override
-    public Skill update(long id, Skill obj) {
-        Skill skill = entityManager.find(Skill.class, id);
-        skill.setName(obj.getName());
-        skill.setDevelopers(obj.getDevelopers());
-        return skill;
+    public Skill update(long id, Skill skill) {
+        Skill newSkill = entityManager.find(Skill.class, id);
+        newSkill.setName(skill.getName());
+        newSkill.setDevelopers(skill.getDevelopers());
+        return newSkill;
     }
 
     @Override

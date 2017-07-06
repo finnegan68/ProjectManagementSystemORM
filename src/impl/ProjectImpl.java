@@ -1,12 +1,13 @@
 package impl;
 
 
+import dao.ProjectDAO;
 import essence.Developer;
 import essence.Project;
 
 import javax.persistence.EntityManager;
 
-public class ProjectImpl implements DAO<Project>{
+public class ProjectImpl implements ProjectDAO{
     EntityManager entityManager;
 
     public ProjectImpl(EntityManager entityManager) {
@@ -14,8 +15,8 @@ public class ProjectImpl implements DAO<Project>{
     }
 
     @Override
-    public void create(Project obj) {
-        entityManager.persist(obj);
+    public void create(Project project) {
+        entityManager.persist(project);
     }
 
     @Override
@@ -24,16 +25,16 @@ public class ProjectImpl implements DAO<Project>{
     }
 
     @Override
-    public Project update(long id, Project obj) {
-        Project prj = entityManager.find(Project.class, id);
-        prj.setName(obj.getName());
-        prj.setCompanyId(obj.getCompanyId());
-        prj.setCost(obj.getCost());
-        return prj;
+    public Project update(long id, Project project) {
+        Project newProject = entityManager.find(Project.class, id);
+        newProject.setName(project.getName());
+        newProject.setCompanyId(project.getCompanyId());
+        newProject.setCost(project.getCost());
+        return newProject;
     }
 
     @Override
     public void delete(long id) {
-        entityManager.remove(entityManager.find(Developer.class, id));
+        entityManager.remove(entityManager.find(Project.class, id));
     }
 }
